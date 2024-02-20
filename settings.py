@@ -1,7 +1,7 @@
 #game settings
 import math
 
-RES = WIDTH, HEIGHT = 1200, 600
+RES = WIDTH, HEIGHT = 1600, 900
 FPS = 60
 
 PLAYER_POS = 1.5, 1
