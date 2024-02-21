@@ -15,7 +15,7 @@ class Raycasting:
             sin_a = math.sin(ray_angle)
             cos_a = math.cos(ray_angle)
 
-            # horizontals
+            # horizontal
             y_hor, dy = (y_map + 1, 1) if sin_a > 0 else (y_map - 1e-6, -1)
 
             depth_hor = (y_hor - oy) / sin_a
@@ -32,7 +32,7 @@ class Raycasting:
                 y_hor += dy
                 depth_hor += delta_depth
 
-            # verticals
+            # vertical
             x_vert, dx = (x_map + 1, 1) if cos_a > 0 else (x_map - 1e-6, -1)
 
             depth_vert = (x_vert - ox) / cos_a
@@ -56,9 +56,11 @@ class Raycasting:
             else:
                 depth = depth_hor
 
-            #linea pa probar
-            pg.draw.line(self.game.screen, 'yellow', (100 * ox, 100 * oy),
-                             (100 * ox + 100 * depth * cos_a, 100 * oy + 100 * depth * sin_a), 2)
+            #proyeccion
+            proj_height = SCREEN_DIST / (depth + 0.0001)
+
+            color = [255 / (1 + depth ** 5 * 0.00002)] * 3
+            pg.draw.rect(self.game.screen, color, (ray * SCALE, HALF_HEIGHT - proj_height // 2, SCALE, proj_height))
 
 
             ray_angle += DELTA_ANGLE

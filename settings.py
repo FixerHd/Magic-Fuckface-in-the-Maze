@@ -1,7 +1,9 @@
-#game settings
+#ajustes del juego
 import math
 
 RES = WIDTH, HEIGHT = 1600, 900
+HALF_WIDTH = WIDTH // 2
+HALF_HEIGHT = HEIGHT // 2
 FPS = 60
 
 PLAYER_POS = 1.5, 1
@@ -15,3 +17,6 @@ NUM_RAYS = WIDTH // 2
 HALF_NUMRAYS = NUM_RAYS // 2
 DELTA_ANGLE = FOV / NUM_RAYS
 MAX_DEPTH = 20
+
+SCREEN_DIST = HALF_WIDTH / math.tan(HALF_FOV)
+SCALE = WIDTH // NUM_RAYS
