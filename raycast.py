@@ -58,8 +58,8 @@ class Raycasting:
 
             # linea pa probar
 
-            #pg.draw.line(self.game.screen, 'yellow', (100 * ox, 100 * oy),
-             #            (100 * ox + 100 * depth * cos_a, 100 * oy + 100 * depth * sin_a), 2)
+            # pg.draw.line(self.game.screen, 'yellow', (100 * ox, 100 * oy), (100 * ox + 100 * depth * cos_a,
+            # 100 * oy + 100 * depth * sin_a), 2)
 
 
 
