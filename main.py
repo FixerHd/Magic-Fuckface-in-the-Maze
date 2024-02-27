@@ -4,6 +4,7 @@ from settings import *
 from map import *
 from player import *
 from raycast import *
+from object_renderer import *
 
 class Game:
     def __init__(self):
@@ -16,6 +17,7 @@ class Game:
     def newgame(self):
         self.map = Map(self)
         self.player = Player(self)
+        self.object_renderer = Objectrenderer(self)
         self.raycasting = Raycasting(self)
     def update(self):
         self.player.update()
@@ -26,6 +28,7 @@ class Game:
 
     def draw(self):
         self.screen.fill('black')
+        self.object_renderer.draw()
         #self.map.draw()
         #self.player.draw()
 
