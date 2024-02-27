@@ -18,19 +18,23 @@ class Player:
         speed_cos = speed * cos_a
 
         keys = pg.key.get_pressed()
-
+        num_key_pressed = -1
         if keys[pg.K_w]:
+            num_key_pressed += 1
             dx += speed_cos
             dy += speed_sin
         if keys[pg.K_s]:
+            num_key_pressed += 1
             dx += -speed_cos
             dy += -speed_sin
         if keys[pg.K_a]:
+            num_key_pressed += 1
             dx += speed_sin
-            dy += speed_cos
-        if keys[pg.K_d]:
-            dx += -speed_sin
             dy += -speed_cos
+        if keys[pg.K_d]:
+            num_key_pressed += 1
+            dx += -speed_sin
+            dy += speed_cos
 
         self.check_wall_collision(dx, dy)
 
@@ -41,13 +45,22 @@ class Player:
             self.angle += PLAYER_ROTSPEED * self.game.delta_time
         self.angle %= math.tau
 
+    def mouse_control(self):
+        mx, my = pg.mouse.get_pos()
+        if mx < MOUSE_BORDER_LEFT or mx > MOUSE_BORDER_RIGHT:
+            pg.mouse.set_pos([HALF_WIDTH, HALF_HEIGHT])
+        self.rel = pg.mouse.get_rel()[0]
+        self.rel = max(-MOUSE_MAX_REL, min(MOUSE_MAX_REL, self.rel))
+        self.angle += self.rel * MOUSE_SENSITIVITY * self.game.delta_time
+
     def check_wall(self, x, y):
         return (x, y) not in self.game.map.world_map
 
     def check_wall_collision(self, dx, dy):
-        if self.check_wall(int(self.x + dx), int(self.y)):
+        scale = PLAYER_SIZE_SCALE / self.game.delta_time
+        if self.check_wall(int(self.x + dx * scale), int(self.y)):
             self.x += dx
-        if self.check_wall(int(self.x), int(self.y + dy)):
+        if self.check_wall(int(self.x), int(self.y + dy * scale)):
             self.y += dy
 
     def draw(self):
@@ -59,6 +72,7 @@ class Player:
 
     def update(self):
         self.movement()
+        self.mouse_control()
 
     @property
     def pos(self):
