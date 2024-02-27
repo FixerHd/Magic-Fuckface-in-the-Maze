@@ -40,9 +40,9 @@ class Player:
 
 
         if keys[pg.K_LEFT]:
-            self.angle -= PLAYER_ROTSPEED * self.game.delta_time
+            self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
         if keys[pg.K_RIGHT]:
-            self.angle += PLAYER_ROTSPEED * self.game.delta_time
+            self.angle += PLAYER_ROT_SPEED * self.game.delta_time
         self.angle %= math.tau
 
     def mouse_control(self):
