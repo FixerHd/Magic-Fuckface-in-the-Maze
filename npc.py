@@ -7,7 +7,6 @@ class NPC(AnimatedSprite):
                  scale=0.6, shift=0.38, animation_time=180):
         super().__init__(game, path, pos, scale, shift, animation_time)
         self.attack_images = self.get_images(self.path + '/attack')
-        self.death_images = self.get_images(self.path + '/death')
         self.idle_images = self.get_images(self.path + '/idle')
         self.pain_images = self.get_images(self.path + '/pain')
         self.walk_images = self.get_images(self.path + '/walk')
@@ -74,7 +73,7 @@ class NPC(AnimatedSprite):
                 self.game.sound.npc_pain.play()
                 self.game.player.shot = False
                 self.pain = True
-                self.health -= self.game.weapon.damage
+                self.health -= self.game.power.damage
                 self.check_health()
 
     def check_health(self):

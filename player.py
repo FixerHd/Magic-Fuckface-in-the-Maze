@@ -11,7 +11,7 @@ class Player:
         self.shot = False
         self.health = PLAYER_MAX_HEALTH
         self.rel = 0
-        self.health_recovery_delay = 700
+        self.health_recovery_delay = 1400
         self.time_prev = pg.time.get_ticks()
 
     def recover_health(self):
@@ -38,10 +38,10 @@ class Player:
 
     def single_fire_event(self, event):
         if event.type == pg.KEYDOWN:
-            if event.key == pg.K_SPACE and not self.shot and not self.game.weapon.reloading:
-                self.game.sound.shotgun.play()
+            if event.key == pg.K_SPACE and not self.shot and not self.game.power.reloading:
+                self.game.sound.beam.play()
                 self.shot = True
-                self.game.weapon.reloading = True
+                self.game.power.reloading = True
 
     def movement(self):
         sin_a = math.sin(self.angle)

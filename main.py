@@ -7,7 +7,7 @@ from raycast import *
 from object_renderer import *
 from sprite_object import *
 from object_handler import *
-from weapon import *
+from powers import *
 from sound import *
 from pathfinding import *
 
@@ -30,7 +30,7 @@ class Game:
         self.object_renderer = ObjectRenderer(self)
         self.raycasting = Raycasting(self)
         self.object_handler = ObjectHandler(self)
-        self.weapon = Weapon(self)
+        self.power = Power(self)
         self.sound = Sound(self)
         self.pathfinding = PathFinding(self)
         pg.mixer.music.play(-1)
@@ -38,7 +38,7 @@ class Game:
         self.player.update()
         self.raycasting.update()
         self.object_handler.update()
-        self.weapon.update()
+        self.power.update()
         #self.static_sprite.update()
         #self.animated_sprite.update()
 
@@ -49,7 +49,7 @@ class Game:
     def draw(self):
         #self.screen.fill('black')
         self.object_renderer.draw()
-        self.weapon.draw()
+        self.power.draw()
         #self.map.draw()
         #self.player.draw()
 
