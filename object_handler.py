@@ -1,5 +1,6 @@
 from sprite_object import *
 from npc import *
+import sys
 from random import choices, randrange
 
 
@@ -59,8 +60,9 @@ class ObjectHandler:
         if not len(self.npc_positions):
             self.game.object_renderer.win()
             pg.display.flip()
-            pg.time.delay(100000)
-            self.game.new_game()
+            pg.time.delay(2000)
+            pg.quit()
+            sys.exit()
 
     def update(self):
         self.npc_positions = {npc.map_pos for npc in self.npc_list if npc.alive}

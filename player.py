@@ -1,4 +1,5 @@
 from settings import *
+import sys
 import pygame as pg
 import math
 
@@ -28,8 +29,9 @@ class Player:
         if self.health < 1:
             self.game.object_renderer.game_over()
             pg.display.flip()
-            pg.time.delay(100000)
-            self.game.new_game()
+            pg.time.delay(2000)
+            pg.quit()
+            sys.exit()
 
     def get_damage(self, damage):
         self.health -= damage
