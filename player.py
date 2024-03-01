@@ -29,7 +29,8 @@ class Player:
         if self.health < 1:
             self.game.object_renderer.game_over()
             pg.display.flip()
-            pg.time.delay(2000)
+            self.game.sound.stop_music()
+            pg.time.delay(5000)
             pg.quit()
             sys.exit()
 
