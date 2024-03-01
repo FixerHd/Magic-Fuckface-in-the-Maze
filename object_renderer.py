@@ -22,8 +22,9 @@ class ObjectRenderer:
         self.screen.blit(self.win_image, (0, 0))
 
     def game_over(self):
-        self.screen.blit(self.game_over_image, (0, 0))
         self.game.sound.game_over.play()
+        self.screen.blit(self.game_over_image, (0, 0))
+        
 
     def draw_player_health(self):
         health = str(self.game.player.health)
