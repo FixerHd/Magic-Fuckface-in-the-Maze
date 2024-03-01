@@ -34,24 +34,19 @@ class Game:
         self.sound = Sound(self)
         self.pathfinding = PathFinding(self)
         pg.mixer.music.play(-1)
+    
     def update(self):
         self.player.update()
         self.raycasting.update()
         self.object_handler.update()
         self.power.update()
-        #self.static_sprite.update()
-        #self.animated_sprite.update()
-
         pg.display.flip()
         self.delta_time = self.clock.tick(FPS)
         pg.display.set_caption('FPS (folladas por segundo): ' + f'{self.clock.get_fps() :.1f}')
 
     def draw(self):
-        #self.screen.fill('black')
         self.object_renderer.draw()
         self.power.draw()
-        #self.map.draw()
-        #self.player.draw()
 
     def check_events(self):
         self.global_trigger = False

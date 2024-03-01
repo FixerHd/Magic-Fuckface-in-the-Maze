@@ -14,9 +14,9 @@ class NPC(AnimatedSprite):
         self.attack_dist = randint(3, 6)
         self.speed = 0.03
         self.size = 20
-        self.health = 100
+        self.health = 1500
         self.attack_damage = 10
-        self.accuracy = 0.15
+        self.accuracy = 0.2
         self.alive = True
         self.pain = False
         self.ray_cast_value = False
@@ -27,7 +27,7 @@ class NPC(AnimatedSprite):
         self.check_animation_time()
         self.get_sprite()
         self.run_logic()
-        # self.draw_ray_cast()
+        self.draw_npc_health()
 
     def check_wall(self, x, y):
         return (x, y) not in self.game.map.world_map
@@ -54,13 +54,6 @@ class NPC(AnimatedSprite):
             self.game.sound.npc_shot.play()
             if random() < self.accuracy:
                 self.game.player.get_damage(self.attack_damage)
-
-    def animate_death(self):
-        if not self.alive:
-            if self.game.global_trigger and self.frame_counter < len(self.death_images) - 1:
-                self.death_images.rotate(-1)
-                self.image = self.death_images[0]
-                self.frame_counter += 1
 
     def animate_pain(self):
         self.animate(self.pain_images)
@@ -105,8 +98,7 @@ class NPC(AnimatedSprite):
 
             else:
                 self.animate(self.idle_images)
-        else:
-            self.animate_death()
+
 
     @property
     def map_pos(self):
@@ -176,15 +168,16 @@ class NPC(AnimatedSprite):
             return True
         return False
 
-    def draw_ray_cast(self):
-        pg.draw.circle(self.game.screen, 'red', (100 * self.x, 100 * self.y), 15)
-        if self.ray_cast_player_npc():
-            pg.draw.line(self.game.screen, 'orange', (100 * self.game.player.x, 100 * self.game.player.y),
-                         (100 * self.x, 100 * self.y), 2)
+    def draw_npc_health(self):
+        health = str(self.game.player.health)
+        font = pg.font.Font(None, 100)
+        health_text = font.render("Fuckface: " + str(self.health), True, (255, 0, 0))
+        text_rect = health_text.get_rect()
+        text_rect.topright = (self.game.screen.get_width(), 0) 
+        self.game.screen.blit(health_text, text_rect)
 
 
 class Fuckface(NPC):
     def __init__(self, game, path='resources/sprites/npc/fuckface/0.png', pos=(10.5, 5.5),
                  scale=1, shift=0, animation_time=180):
         super().__init__(game, path, pos, scale, shift, animation_time)
-        self.health = 1000

@@ -18,15 +18,17 @@ class ObjectRenderer:
         self.draw_player_health()
 
     def win(self):
+        self.screen.fill('black')
         self.screen.blit(self.win_image, (0, 0))
 
     def game_over(self):
         self.screen.blit(self.game_over_image, (0, 0))
+        self.game.sound.game_over.play()
 
     def draw_player_health(self):
         health = str(self.game.player.health)
         font = pg.font.Font(None, 100)
-        health_text = font.render("Health: " + health, True, (0, 255, 0))
+        health_text = font.render("You: " + health, True, (0, 255, 0))
         self.screen.blit(health_text, (0, 0))
 
 
