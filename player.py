@@ -41,7 +41,7 @@ class Player:
 
     def single_fire_event(self, event):
         if event.type == pg.KEYDOWN:
-            if event.key == pg.K_SPACE and not self.shot and not self.game.power.reloading:
+            if event.key == TECLA_DISPARO and not self.shot and not self.game.power.reloading:
                 self.game.sound.beam.play()
                 self.shot = True
                 self.game.power.reloading = True
@@ -56,19 +56,19 @@ class Player:
 
         keys = pg.key.get_pressed()
         num_key_pressed = -1
-        if keys[pg.K_w]:
+        if keys[TECLA_ARRIBA]:
             num_key_pressed += 1
             dx += speed_cos
             dy += speed_sin
-        if keys[pg.K_s]:
+        if keys[TECLA_ABAJO]:
             num_key_pressed += 1
             dx += -speed_cos
             dy += -speed_sin
-        if keys[pg.K_a]:
+        if keys[TECLA_IZQUIERDA]:
             num_key_pressed += 1
             dx += speed_sin
             dy += -speed_cos
-        if keys[pg.K_d]:
+        if keys[TECLA_DERECHA]:
             num_key_pressed += 1
             dx += -speed_sin
             dy += speed_cos
@@ -76,9 +76,9 @@ class Player:
 
         self.check_wall_collision(dx, dy)
 
-        if keys[pg.K_LEFT]:
+        if keys[TECLA_ROTARIZQUIERDA]:
              self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
-        if keys[pg.K_RIGHT]:
+        if keys[TECLA_ROTARDERECHA]:
              self.angle += PLAYER_ROT_SPEED * self.game.delta_time
         self.angle %= math.tau
 

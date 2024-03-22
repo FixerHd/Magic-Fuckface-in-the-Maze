@@ -50,7 +50,11 @@ while True:
     # Bucle principal del juego
     while True:
         # Manejo de eventos
+
         for event in pygame.event.get():
+            if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_6):
+                pg.quit()
+                sys.exit()
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
