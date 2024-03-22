@@ -12,10 +12,10 @@ class NPC(AnimatedSprite):
         self.walk_images = self.get_images(self.path + '/walk')
 
         self.attack_dist = 4
-        self.speed = 0.03
+        self.speed = 0.02
         self.size = 18
         self.health = 1500
-        self.attack_damage = 15
+        self.attack_damage = 12
         self.accuracy = 0.2
         self.alive = True
         self.pain = False
