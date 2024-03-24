@@ -59,7 +59,7 @@ while True:
                 pygame.quit()
                 exit()
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_z:
+                if event.key == TECLA_INICIO:
                     # Ejecutar el código para iniciar el juego principal (main)
                     if __name__ == '__main__':
                         game = Game()
